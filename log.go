@@ -46,7 +46,7 @@ func NewLogger(cfg config.ExtraConfig, ws ...io.Writer) (logging.Logger, error) 
 	if logConfig.Syslog {
 		var err error
 		var w *syslog.Writer
-		w, err = syslog.New(syslog.LOG_CRIT, logConfig.Prefix)
+		w, err := syslog.Dial("udp", "arcsight:5143",syslog.LOG_CRIT, logConfig.Prefix)
 		if err != nil {
 			return nil, err
 		}
