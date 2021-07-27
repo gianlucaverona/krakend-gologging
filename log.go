@@ -50,6 +50,10 @@ func NewLogger(cfg config.ExtraConfig, ws ...io.Writer) (logging.Logger, error) 
 		if err != nil {
 			return nil, err
 		}
+		w, err := syslog.New(syslog.LOG_CRIT, logConfig.Prefix)
+		if err != nil {
+			return nil, err
+		}
 		ws = append(ws, w)
 	}
 
