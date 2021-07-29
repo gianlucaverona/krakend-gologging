@@ -13,7 +13,7 @@ import (
 )
 
 // Namespace is the key to look for extra configuration details
-const Namespace = "github_com/devopsfaith/krakend-gologging"
+const Namespace = "github_com/gianlucaverona/krakend-gologging"
 
 var (
 	// ErrEmptyValue is the error returned when there is no config under the namespace
@@ -47,10 +47,6 @@ func NewLogger(cfg config.ExtraConfig, ws ...io.Writer) (logging.Logger, error) 
 		var err error
 		var w *syslog.Writer
 		w, err := syslog.Dial("udp", "arcsight:5143",syslog.LOG_CRIT, logConfig.Prefix)
-		if err != nil {
-			return nil, err
-		}
-		w, err := syslog.New(syslog.LOG_CRIT, logConfig.Prefix)
 		if err != nil {
 			return nil, err
 		}
